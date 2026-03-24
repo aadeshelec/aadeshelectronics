@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadesh Electric Store — Motor Repairing & Electrical Services | Palitana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy2: #162032;
+  --orange: #F26522;
+  --orange-dark: #d4541a;
+  --orange-light: #fff0e6;
+  --gold: #F5A623;
+  --white: #ffffff;
+  --off: #F7F8FC;
+  --gray: #F0F2F7;
+  --text: #1a2030;
+  --muted: #6B7280;
+  --border: #E5E8F0;
+  --success: #10B981;
+  --danger: #EF4444;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Mulish',sans-serif; background:var(--white); color:var(--text); overflow-x:hidden; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--gray); }
+::-webkit-scrollbar-thumb { background:var(--orange); border-radius:10px; }
+
+/* ─── TOPBAR ─── */
+.topbar {
+  background:var(--navy); color:#cdd6e4;
+  padding:8px 6%; font-size:12.5px; font-weight:500;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.topbar a { color:#cdd6e4; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .2s; }
+.topbar a:hover { color:var(--orange); }
+.topbar-left, .topbar-right { display:flex; gap:20px; align-items:center; }
+.topbar i { color:var(--orange); }
+
+/* ─── NAVBAR ─── */
+nav {
+  position:sticky; top:0; z-index:1000; background:var(--white);
+  box-shadow:0 2px 20px rgba(13,27,42,.08);
+  padding:0 6%; display:flex; align-items:center; justify-content:space-between; height:72px;
+}
+.logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.logo-mark {
+  width:48px; height:48px; background:var(--navy); border-radius:12px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  position:relative; overflow:hidden;
+}
+.logo-mark::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:var(--orange);
+}
+.logo-mark i { font-size:22px; color:var(--white); }
+.logo-text .name { font-family:'Syne',sans-serif; font-size:19px; font-weight:800; color:var(--navy); letter-spacing:0.5px; line-height:1; }
+.logo-text .sub { font-size:10.5px; color:var(--muted); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-top:3px; }
+.nav-links { display:flex; align-items:center; gap:6px; list-style:none; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:14px; font-weight:600; padding:8px 14px; border-radius:8px; transition:all .2s; }
+.nav-links a:hover, .nav-links a.active { color:var(--navy); background:var(--gray); }
+.nav-cta {
+  background:var(--orange); color:var(--white) !important; padding:10px 22px !important;
+  border-radius:8px; display:inline-flex !important; align-items:center; gap:8px;
+  font-weight:700 !important; transition:all .2s !important;
+}
+.nav-cta:hover { background:var(--orange-dark) !important; transform:translateY(-1px); box-shadow:0 6px 20px rgba(242,101,34,.35) !important; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+.hamburger span { width:26px; height:2.5px; background:var(--navy); border-radius:4px; transition:.3s; display:block; }
+.mob-nav { display:none; position:fixed; top:0; left:0; width:100%; height:100vh; background:var(--white); z-index:9998; padding:100px 6% 40px; flex-direction:column; gap:8px; }
+.mob-nav.open { display:flex; }
+.mob-nav a { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; color:var(--navy); text-decoration:none; padding:14px 0; border-bottom:1px solid var(--border); }
+.mob-close { position:absolute; top:24px; right:6%; font-size:24px; color:var(--navy); cursor:pointer; background:none; border:none; }
+
+/* ─── HERO ─── */
+#home {
+  background:var(--navy); min-height:92vh; display:flex; align-items:center;
+  padding:100px 6% 80px; position:relative; overflow:hidden;
+}
+.hero-bg-lines {
+  position:absolute; inset:0; opacity:.04;
+  background-image: repeating-linear-gradient(90deg, #fff 0, #fff 1px, transparent 0, transparent 60px),
+                    repeating-linear-gradient(0deg, #fff 0, #fff 1px, transparent 0, transparent 60px);
+}
+.hero-glow {
+  position:absolute; top:-200px; right:-100px; width:700px; height:700px;
+  background:radial-gradient(ellipse, rgba(242,101,34,.18) 0%, transparent 65%); pointer-events:none;
+}
+.hero-inner { max-width:1280px; margin:0 auto; width:100%; display:grid; grid-template-columns:1.1fr 0.9fr; gap:80px; align-items:center; position:relative; z-index:1; }
+.hero-chip {
+  display:inline-flex; align-items:center; gap:8px; background:rgba(242,101,34,.15);
+  border:1px solid rgba(242,101,34,.3); border-radius:100px; padding:6px 16px 6px 10px;
+  margin-bottom:28px;
+}
+.chip-dot { width:8px; height:8px; border-radius:50%; background:var(--orange); animation:pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(242,101,34,.6)} 50%{box-shadow:0 0 0 6px rgba(242,101,34,0)} }
+.hero-chip span { font-size:12px; font-weight:700; color:var(--orange); letter-spacing:1.5px; text-transform:uppercase; }
+.hero-h1 { font-family:'Syne',sans-serif; font-size:clamp(40px,5vw,68px); font-weight:800; line-height:1.05; color:var(--white); margin-bottom:24px; }
+.hero-h1 .line-accent { color:var(--orange); }
+.hero-h1 .line-dim { color:rgba(255,255,255,.55); font-weight:400; font-size:.72em; display:block; margin-bottom:4px; font-family:'Mulish',sans-serif; letter-spacing:3px; text-transform:uppercase; font-size:14px; }
+.hero-p { font-size:17px; line-height:1.75; color:rgba(255,255,255,.65); max-width:500px; margin-bottom:44px; font-weight:400; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px; }
+.btn-fill { background:var(--orange); color:#fff; padding:14px 30px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; display:inline-flex; align-items:center; gap:10px; transition:all .25s; border:2px solid var(--orange); }
+.btn-fill:hover { background:var(--orange-dark); border-color:var(--orange-dark); transform:translateY(-2px); box-shadow:0 10px 30px rgba(242,101,34,.4); }
+.btn-ghost { background:transparent; color:#fff; padding:14px 30px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; display:inline-flex; align-items:center; gap:10px; transition:all .25s; border:2px solid rgba(255,255,255,.25); }
+.btn-ghost:hover { border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.06); }
+.hero-metrics { display:flex; gap:0; }
+.metric { padding:0 32px 0 0; }
+.metric:not(:first-child) { padding-left:32px; border-left:1px solid rgba(255,255,255,.12); }
+.metric-n { font-family:'Syne',sans-serif; font-size:36px; font-weight:800; color:var(--orange); line-height:1; }
+.metric-l { font-size:12px; font-weight:600; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:2px; margin-top:6px; }
+
+/* Hero Right — Visual */
+.hero-right { position:relative; }
+.hero-card-main {
+  background:var(--navy2); border:1px solid rgba(255,255,255,.1); border-radius:24px;
+  padding:40px; position:relative; overflow:hidden;
+}
+.hero-card-main::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--orange), var(--gold));
+}
+.hc-icon { font-size:64px; color:var(--orange); margin-bottom:20px; }
+.hc-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:#fff; margin-bottom:10px; }
+.hc-sub { color:rgba(255,255,255,.5); font-size:14px; margin-bottom:28px; line-height:1.6; }
+.hc-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.hc-tag { background:rgba(242,101,34,.12); border:1px solid rgba(242,101,34,.2); color:var(--orange); padding:5px 12px; border-radius:6px; font-size:12px; font-weight:700; }
+.hero-badge-float {
+  position:absolute; background:var(--white); border-radius:14px; padding:12px 16px;
+  box-shadow:0 12px 40px rgba(0,0,0,.25); display:flex; align-items:center; gap:10px; font-size:13px; font-weight:700; color:var(--navy);
+}
+.hero-badge-float.f1 { top:-18px; right:-18px; animation:floaty 3s ease-in-out infinite; }
+.hero-badge-float.f2 { bottom:-18px; left:-18px; animation:floaty 3s ease-in-out infinite .8s reverse; }
+.hbf-icon { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.hbf-icon.green { background:#dcfce7; color:#16a34a; }
+.hbf-icon.blue { background:#dbeafe; color:#2563eb; }
+.hbf-sub { font-size:11px; font-weight:500; color:var(--muted); }
+@keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* ─── SECTION BASE ─── */
+.sec { padding:100px 6%; }
+.sec-alt { background:var(--off); }
+.sec-navy { background:var(--navy); }
+.container { max-width:1280px; margin:0 auto; }
+.sec-eyebrow { display:inline-flex; align-items:center; gap:8px; margin-bottom:16px; }
+.sec-eyebrow span { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--orange); }
+.sec-eyebrow::before { content:''; width:28px; height:2px; background:var(--orange); border-radius:2px; }
+.sec-h2 { font-family:'Syne',sans-serif; font-size:clamp(28px,3.5vw,46px); font-weight:800; color:var(--navy); line-height:1.1; margin-bottom:16px; }
+.sec-h2 em { font-style:normal; color:var(--orange); }
+.sec-p { font-size:16px; color:var(--muted); line-height:1.75; max-width:540px; }
+.sec-header { margin-bottom:60px; }
+.sec-header.center { text-align:center; }
+.sec-header.center .sec-eyebrow { justify-content:center; }
+.sec-header.center .sec-p { margin:0 auto; }
+
+/* ─── SERVICES ─── */
+.svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.svc-card {
+  background:var(--white); border:1.5px solid var(--border); border-radius:20px; padding:32px;
+  transition:all .3s cubic-bezier(.4,0,.2,1); cursor:default; position:relative; overflow:hidden;
+}
+.svc-card:hover { border-color:var(--orange); transform:translateY(-6px); box-shadow:0 20px 50px rgba(242,101,34,.12); }
+.svc-num { position:absolute; top:24px; right:28px; font-family:'Syne',sans-serif; font-size:40px; font-weight:800; color:var(--gray); line-height:1; }
+.svc-icon-wrap { width:60px; height:60px; background:var(--orange-light); border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; }
+.svc-icon-wrap i { font-size:26px; color:var(--orange); }
+.svc-card h3 { font-family:'Syne',sans-serif; font-size:19px; font-weight:800; color:var(--navy); margin-bottom:10px; }
+.svc-card p { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+.svc-price { font-size:14px; font-weight:800; color:var(--orange); display:flex; align-items:center; gap:6px; }
+.svc-price i { font-size:12px; }
+
+/* ─── PRODUCTS ─── */
+.prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.prod-card { background:var(--white); border:1.5px solid var(--border); border-radius:18px; overflow:hidden; transition:all .3s; }
+.prod-card:hover { transform:translateY(-5px); box-shadow:0 18px 45px rgba(13,27,42,.1); border-color:var(--orange); }
+.prod-thumb { height:160px; background:var(--off); display:flex; align-items:center; justify-content:center; font-size:54px; position:relative; }
+.prod-badge { position:absolute; top:12px; left:12px; background:var(--orange); color:#fff; font-size:10px; font-weight:800; padding:4px 10px; border-radius:6px; letter-spacing:1px; text-transform:uppercase; }
+.prod-body { padding:18px 20px 22px; }
+.prod-cat { font-size:10.5px; font-weight:800; color:var(--orange); text-transform:uppercase; letter-spacing:2px; margin-bottom:6px; }
+.prod-body h4 { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:var(--navy); margin-bottom:6px; }
+.prod-body p { font-size:12.5px; color:var(--muted); line-height:1.6; margin-bottom:16px; }
+.prod-foot { display:flex; align-items:center; justify-content:space-between; }
+.prod-price { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:var(--navy); }
+.btn-enq { background:var(--orange-light); color:var(--orange); border:none; padding:8px 14px; border-radius:8px; font-size:12px; font-weight:800; cursor:pointer; transition:all .2s; }
+.btn-enq:hover { background:var(--orange); color:#fff; }
+
+/* ─── WHY US ─── */
+.why-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.why-left { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.why-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:24px; transition:all .3s; }
+.why-card:hover { border-color:rgba(242,101,34,.4); background:rgba(242,101,34,.05); }
+.why-card i { font-size:28px; color:var(--orange); margin-bottom:14px; display:block; }
+.why-card h4 { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#fff; margin-bottom:8px; }
+.why-card p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.7; }
+.why-right .sec-h2 { color:#fff; }
+.why-right .sec-p { color:rgba(255,255,255,.55); max-width:440px; margin-bottom:36px; }
+.why-right .sec-eyebrow span { color:var(--gold); }
+.why-right .sec-eyebrow::before { background:var(--gold); }
+.why-cta-strip { background:rgba(242,101,34,.12); border:1px solid rgba(242,101,34,.25); border-radius:16px; padding:24px; }
+.why-cta-strip h5 { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; color:#fff; margin-bottom:6px; }
+.why-cta-strip p { font-size:13px; color:rgba(255,255,255,.5); margin-bottom:16px; }
+
+/* ─── PROCESS ─── */
+.process-row { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+.process-row::before { content:''; position:absolute; top:36px; left:12.5%; right:12.5%; height:2px; background:repeating-linear-gradient(90deg,var(--orange) 0,var(--orange) 8px,transparent 8px,transparent 18px); }
+.step { text-align:center; padding:0 20px; }
+.step-num { width:72px; height:72px; background:var(--white); border:2.5px solid var(--orange); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-family:'Syne',sans-serif; font-size:24px; font-weight:800; color:var(--orange); box-shadow:0 0 0 8px var(--orange-light); }
+.step h4 { font-family:'Syne',sans-serif; font-size:17px; font-weight:800; color:var(--navy); margin-bottom:10px; }
+.step p { font-size:13.5px; color:var(--muted); line-height:1.7; }
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.testi-card { background:var(--white); border:1.5px solid var(--border); border-radius:20px; padding:28px; transition:all .3s; }
+.testi-card:hover { border-color:var(--orange); box-shadow:0 12px 35px rgba(242,101,34,.1); }
+.testi-stars { display:flex; gap:3px; margin-bottom:16px; }
+.testi-stars i { color:var(--gold); font-size:15px; }
+.testi-text { font-size:15px; color:var(--text); line-height:1.75; margin-bottom:22px; font-style:italic; }
+.testi-sep { width:36px; height:2px; background:var(--orange); margin-bottom:18px; }
+.testi-author { display:flex; align-items:center; gap:12px; }
+.testi-av { width:44px; height:44px; background:var(--navy); border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:var(--white); }
+.testi-name { font-weight:700; font-size:14px; color:var(--navy); }
+.testi-loc { font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* ─── CONTACT ─── */
+.contact-wrap { display:grid; grid-template-columns:1fr 1.2fr; gap:70px; align-items:start; }
+.contact-info-box { display:flex; flex-direction:column; gap:20px; }
+.ci-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:20px 22px; display:flex; gap:16px; align-items:flex-start; transition:all .2s; }
+.ci-card:hover { border-color:var(--orange); }
+.ci-icon { width:44px; height:44px; background:var(--orange-light); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--orange); font-size:17px; flex-shrink:0; }
+.ci-label { font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:5px; }
+.ci-val { font-size:14.5px; font-weight:600; color:var(--navy); line-height:1.6; }
+.ci-val a { color:var(--navy); text-decoration:none; }
+.ci-val a:hover { color:var(--orange); }
+.contact-form-box { background:var(--white); border:1.5px solid var(--border); border-radius:22px; padding:40px; }
+.cf-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:var(--navy); margin-bottom:6px; }
+.cf-sub { font-size:14px; color:var(--muted); margin-bottom:28px; }
+.fg { margin-bottom:18px; }
+.fg label { display:block; font-size:12px; font-weight:800; color:var(--navy); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; }
+.fg input, .fg textarea, .fg select {
+  width:100%; background:var(--off); border:1.5px solid var(--border);
+  border-radius:10px; padding:13px 16px; color:var(--text); font-size:14.5px;
+  font-family:'Mulish',sans-serif; font-weight:500; transition:all .2s; outline:none; appearance:none;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus { border-color:var(--orange); background:var(--white); box-shadow:0 0 0 4px rgba(242,101,34,.08); }
+.fg textarea { height:110px; resize:vertical; }
+.fg-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-alert { display:none; padding:13px 16px; border-radius:10px; font-size:14px; font-weight:600; margin-bottom:16px; align-items:center; gap:10px; }
+.form-alert.show { display:flex; }
+.form-alert.ok { background:#dcfce7; color:#16a34a; border:1px solid #bbf7d0; }
+
+/* ─── MAP ─── */
+.map-wrap { height:380px; }
+.map-wrap iframe { width:100%; height:100%; border:0; display:block; }
+
+/* ─── FOOTER ─── */
+footer { background:var(--navy); padding:72px 6% 32px; }
+.footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:50px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,.08); margin-bottom:32px; }
+.ft-brand .logo { margin-bottom:20px; display:inline-flex; }
+.ft-brand p { font-size:14px; color:rgba(255,255,255,.45); line-height:1.8; max-width:280px; margin-bottom:24px; }
+.soc { display:flex; gap:10px; }
+.soc a { width:38px; height:38px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.5); font-size:15px; text-decoration:none; transition:all .2s; }
+.soc a:hover { border-color:var(--orange); color:var(--orange); background:rgba(242,101,34,.1); }
+.fc h5 { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:#fff; margin-bottom:20px; text-transform:uppercase; letter-spacing:1.5px; }
+.fc ul { list-style:none; display:flex; flex-direction:column; gap:11px; }
+.fc ul a { color:rgba(255,255,255,.45); text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+.fc ul a:hover { color:var(--orange); }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; }
+.footer-bottom p { color:rgba(255,255,255,.3); font-size:13px; }
+.footer-bottom a { color:rgba(255,255,255,.3); font-size:13px; text-decoration:none; display:flex; align-items:center; gap:6px; transition:color .2s; }
+.footer-bottom a:hover { color:var(--orange); }
+
+/* ─── FLOATING ─── */
+.wa-fab { position:fixed; bottom:28px; right:28px; z-index:900; }
+.wa-fab a { width:58px; height:58px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:28px; text-decoration:none; box-shadow:0 6px 24px rgba(37,211,102,.45); transition:transform .2s; }
+.wa-fab a:hover { transform:scale(1.1); }
+#back-top { position:fixed; bottom:100px; right:28px; z-index:900; width:46px; height:46px; background:var(--navy); color:#fff; border:none; border-radius:12px; font-size:16px; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.2); transition:all .2s; }
+#back-top.show { display:flex; }
+#back-top:hover { background:var(--orange); }
+
+/* ─── ANNOUNCE BANNER ─── */
+.announce { background:var(--orange); color:#fff; text-align:center; padding:10px 20px; font-size:13px; font-weight:700; letter-spacing:.5px; }
+.announce a { color:#fff; text-decoration:underline; margin-left:8px; }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px) { .prod-grid { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:960px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-right { display:none; }
+  .svc-grid { grid-template-columns:1fr 1fr; }
+  .why-wrap { grid-template-columns:1fr; gap:50px; }
+  .process-row { grid-template-columns:1fr 1fr; gap:40px; }
+  .process-row::before { display:none; }
+  .contact-wrap { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr 1fr; gap:32px; }
+  .prod-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:680px) {
+  .topbar { display:none; }
+  .hamburger { display:flex; }
+  .nav-links { display:none; }
+  .svc-grid { grid-template-columns:1fr; }
+  .testi-grid { grid-template-columns:1fr; }
+  .prod-grid { grid-template-columns:1fr 1fr; }
+  .footer-top { grid-template-columns:1fr; }
+  .hero-metrics { flex-wrap:wrap; gap:20px; }
+  .metric:not(:first-child) { padding-left:0; border-left:none; }
+  .fg-row { grid-template-columns:1fr; }
+  .why-left { grid-template-columns:1fr; }
+  .process-row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="announce">⚡ Same Day Service Available! Call us now: <a href="tel:+919876543210">+91 98765 43210</a></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="/cdn-cgi/l/email-protection#f392929796809b969f969087819a90b3949e929a9fdd909c9e"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="a7c6c6c3c2d4cfc2cbc2c4d3d5cec4e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a>
+    <a href="#"><i class="fas fa-map-marker-alt"></i> Palitana, Bhavnagar, Gujarat</a>
+  </div>
+  <div class="topbar-right">
+    <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="#"><i class="fas fa-clock"></i> Mon–Sat: 9AM–7PM</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <div class="logo-mark"><i class="fas fa-bolt"></i></div>
+    <div class="logo-text">
+      <div class="name">AADESH ELECTRIC</div>
+      <div class="sub">Palitana · Gujarat</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+919876543210" class="nav-cta"><i class="fas fa-phone"></i> Call Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="openMob()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="closeMob()"><i class="fas fa-times"></i></button>
+  <a href="#home" onclick="closeMob()">Home</a>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#products" onclick="closeMob()">Products</a>
+  <a href="#process" onclick="closeMob()">How It Works</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <div style="margin-top:20px">
+    <a href="tel:+919876543210" class="btn-fill" style="display:inline-flex"><i class="fas fa-phone"></i> +91 98765 43210</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-chip"><div class="chip-dot"></div><span>Palitana's #1 Electrical Store</span></div>
+      <h1 class="hero-h1">
+        <span class="line-dim">Motor Repairing &</span>
+        Expert <span class="line-accent">Electrical</span><br>Services
+      </h1>
+      <p class="hero-p">Trusted by 2000+ homes and businesses across Palitana & Bhavnagar. From motor rewinding to industrial wiring — we do it right, we do it fast.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-fill"><i class="fas fa-wrench"></i> Book a Service</a>
+        <a href="#services" class="btn-ghost"><i class="fas fa-list"></i> View Services</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric"><div class="metric-n">15+</div><div class="metric-l">Years Exp.</div></div>
+        <div class="metric"><div class="metric-n">2000+</div><div class="metric-l">Clients Served</div></div>
+        <div class="metric"><div class="metric-n">5000+</div><div class="metric-l">Motors Fixed</div></div>
+        <div class="metric"><div class="metric-n">24hr</div><div class="metric-l">Turnaround</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-badge-float f1">
+        <div class="hbf-icon green"><i class="fas fa-check"></i></div>
+        <div><div>Service Warranty</div><div class="hbf-sub">On all repairs</div></div>
+      </div>
+      <div class="hero-card-main">
+        <div class="hc-icon"><i class="fas fa-cogs"></i></div>
+        <div class="hc-title">Motor Rewinding Expert</div>
+        <div class="hc-sub">All types of AC & DC motors — single phase, three phase, submersible and more. ISI quality copper wire used.</div>
+        <div class="hc-tags">
+          <span class="hc-tag">Single Phase</span>
+          <span class="hc-tag">Three Phase</span>
+          <span class="hc-tag">AC / DC</span>
+          <span class="hc-tag">Submersible</span>
+          <span class="hc-tag">Industrial</span>
+        </div>
+      </div>
+      <div class="hero-badge-float f2">
+        <div class="hbf-icon blue"><i class="fas fa-map-marker-alt"></i></div>
+        <div><div>Palitana, Gujarat</div><div class="hbf-sub">Home visits available</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec sec-alt" id="services">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow"><span>Our Services</span></div>
+      <h2 class="sec-h2">Everything You Need,<br><em>Under One Roof</em></h2>
+      <p class="sec-p">Professional motor and electrical services for homes, farms, and industries across Palitana.</p>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec" id="products">
+  <div class="container">
+    <div class="sec-header center">
+      <div class="sec-eyebrow"><span>Products</span></div>
+      <h2 class="sec-h2" style="text-align:center">Quality <em>Electrical Products</em></h2>
+      <p class="sec-p">ISI-marked motors, switchgear, pumps, wiring materials and more — in store and on order.</p>
+    </div>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec sec-navy" id="why">
+  <div class="container">
+    <div class="why-wrap">
+      <div class="why-left" id="whyGrid">
+        <!-- JS fills -->
+      </div>
+      <div class="why-right">
+        <div class="sec-eyebrow"><span>Why Choose Us</span></div>
+        <h2 class="sec-h2">Palitana's Most<br><em>Trusted Workshop</em></h2>
+        <p class="sec-p">From fast turnaround to transparent pricing — we've built our reputation on quality work and honest service for over 15 years.</p>
+        <div class="why-cta-strip" style="margin-top:32px">
+          <h5>📍 Serving Palitana, Bhavnagar, Botad & Surrounding Areas</h5>
+          <p>On-site visits available. Same-day service for urgent repairs.</p>
+          <a href="#contact" class="btn-fill" style="font-size:14px;padding:11px 22px"><i class="fas fa-phone"></i> Get Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec sec-alt" id="process">
+  <div class="container">
+    <div class="sec-header center">
+      <div class="sec-eyebrow"><span>How It Works</span></div>
+      <h2 class="sec-h2" style="text-align:center">Simple <em>4-Step Process</em></h2>
+      <p class="sec-p">Getting your motor repaired is simple and hassle-free with us.</p>
+    </div>
+    <div class="process-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Contact Us</h4>
+        <p>Call, WhatsApp, or visit our store. Describe your problem and we'll advise you instantly.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Inspection & Quote</h4>
+        <p>We inspect the motor or equipment and provide a clear, honest quote with no hidden charges.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Expert Repair</h4>
+        <p>Our certified technicians repair or rewind using quality materials. Most jobs done within 24–48 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Test & Deliver</h4>
+        <p>Full testing before delivery. Every repair comes with a service warranty for your peace of mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="testimonials">
+  <div class="container">
+    <div class="sec-header center">
+      <div class="sec-eyebrow"><span>Reviews</span></div>
+      <h2 class="sec-h2" style="text-align:center">What Our <em>Customers Say</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">"Motor ne rewinding karo, 2 din ma ready. Aaj sudharna nai aavi koi problem. Aadesh Electric no dhanywad! Khub sari service che."</p>
+        <div class="testi-sep"></div>
+        <div class="testi-author"><div class="testi-av">R</div><div><div class="testi-name">Rameshbhai Patel</div><div class="testi-loc">Palitana</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">"Farm pump motor ni problem hati. 24 kalaak ma fix thayelu. Bilkul reasonable rate aapyo. Highly recommend karis badha ne."</p>
+        <div class="testi-sep"></div>
+        <div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Maheshbhai Solanki</div><div class="testi-loc">Vadala, Palitana</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+        <p class="testi-text">"Electrical wiring mate aavya hata. Saru kaam karyu, time par puro thayun. Very professional team. Will come again for sure!"</p>
+        <div class="testi-sep"></div>
+        <div class="testi-author"><div class="testi-av">H</div><div><div class="testi-name">Hardikbhai Makwana</div><div class="testi-loc">Bhavnagar</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec sec-alt" id="contact">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow"><span>Contact Us</span></div>
+      <h2 class="sec-h2">Let's Talk. We're<br><em>Here to Help.</em></h2>
+      <p class="sec-p">Send an enquiry or visit our store. We respond within the hour during working hours.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info-box">
+        <div class="ci-card">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="ci-label">Location</div><div class="ci-val">Aadesh Electric Store, Main Bazaar,<br>Palitana, Bhavnagar, Gujarat — 364270</div></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div><div class="ci-label">Phone / WhatsApp</div><div class="ci-val"><a href="tel:+919876543210">+91 98765 43210</a><br><a href="tel:+912848252000">02848-252000</a></div></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div><div class="ci-label">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection#5e3f3f3a3b2d363b323b3d2a2c373d1e39333f3732703d3133"><span class="__cf_email__" data-cfemail="30515154554358555c55534442595370575d51595c1e535f5d">[email&#160;protected]</span></a></div></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon"><i class="fas fa-clock"></i></div>
+          <div><div class="ci-label">Working Hours</div><div class="ci-val">Mon – Sat: 9:00 AM – 7:00 PM<br>Sunday: 10:00 AM – 2:00 PM</div></div>
+        </div>
+      </div>
+      <div class="contact-form-box">
+        <div class="cf-title">Send an Enquiry</div>
+        <div class="cf-sub">Fill in the form and we'll call you back soon.</div>
+        <div class="form-alert ok" id="formOk"><i class="fas fa-check-circle"></i> Enquiry submitted! We'll contact you shortly.</div>
+        <div class="fg-row">
+          <div class="fg"><label>Full Name</label><input id="fN" placeholder="Rameshbhai Patel"></div>
+          <div class="fg"><label>Phone Number</label><input id="fP" type="tel" placeholder="+91 98765 43210"></div>
+        </div>
+        <div class="fg">
+          <label>Service Required</label>
+          <select id="fS">
+            <option value="">— Select Service —</option>
+            <option>Motor Rewinding</option>
+            <option>Motor Repair</option>
+            <option>Electrical Wiring</option>
+            <option>Pump Repair</option>
+            <option>Panel Board Work</option>
+            <option>Product Enquiry</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea id="fM" placeholder="Describe your problem or requirement..."></textarea></div>
+        <button class="btn-fill" style="width:100%;justify-content:center;font-size:15px" onclick="submitForm()">
+          <i class="fas fa-paper-plane"></i> Send Enquiry
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29760.14!2d71.6211!3d21.5179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395850d6cce8b9b1%3A0x1fb2c0cf2e5df8ee!2sPalitana%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen loading="lazy"></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="ft-brand">
+      <a href="#home" class="logo">
+        <div class="logo-mark"><i class="fas fa-bolt"></i></div>
+        <div class="logo-text"><div class="name">AADESH ELECTRIC</div><div class="sub">Palitana · Gujarat</div></div>
+      </a>
+      <p>Your trusted electrical partner in Palitana. Expert motor rewinding, repair, and electrical services for homes, farms, and industries.</p>
+      <div class="soc">
+        <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="fc">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Motor Rewinding</a></li>
+        <li><a href="#services">Motor Repair</a></li>
+        <li><a href="#services">Electrical Wiring</a></li>
+        <li><a href="#services">Pump Repair</a></li>
+        <li><a href="#services">Panel Board Work</a></li>
+        <li><a href="#services">Home Visit</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+        <li><a href="tel:+912848252000">02848-252000</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#2342424746504b464f464057514a4063444e424a4f0d404c4e"><span class="__cf_email__" data-cfemail="a6c7c7c2c3d5cec3cac3c5d2d4cfc5e6c1cbc7cfca88c5c9cb">[email&#160;protected]</span></a></li>
+        <li><a href="#">Palitana, Gujarat 364270</a></li>
+        <li><a href="/admin.html">⚙ Admin Panel</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Aadesh Electric Store, Palitana. All rights reserved.</p>
+    <a href="/admin.html"><i class="fas fa-shield-alt"></i> Admin Login</a>
+  </div>
+</footer>
+
+<!-- FLOATING -->
+<div class="wa-fab">
+  <a href="https://wa.me/919876543210?text=Hello%20Aadesh%20Electric%2C%20I%20need%20help." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+<button id="back-top" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── DATA ── */
+const DEFAULT_SVC = [
+  {id:1,icon:'fa-sync-alt',name:'Motor Rewinding',price:'From ₹500',desc:'Complete rewinding of single & three-phase AC/DC motors with ISI-grade copper wire. Fast turnaround.'},
+  {id:2,icon:'fa-tools',name:'Motor Repair',price:'From ₹300',desc:'Bearing replacement, shaft repair, capacitor change, insulation testing, and full overhaul.'},
+  {id:3,icon:'fa-bolt',name:'Electrical Wiring',price:'On-Site Quote',desc:'Home, shop, and industrial wiring by certified technicians. New wiring or rewiring available.'},
+  {id:4,icon:'fa-tint',name:'Pump Repair',price:'From ₹400',desc:'Water pump motor repair — submersible and surface pumps for farms, homes & industries.'},
+  {id:5,icon:'fa-solar-panel',name:'Panel Board Work',price:'From ₹800',desc:'MCB panel fitting, distribution board installation, RCCB, and switchgear work.'},
+  {id:6,icon:'fa-home',name:'Home Visit Service',price:'₹100 Visit Charge',desc:'On-site inspection and repair for large equipment. Emergency visits available.'},
+];
+const DEFAULT_PROD = [
+  {id:1,icon:'⚙️',name:'Single Phase Motor',price:'₹2,500',category:'Motors',badge:'Hot',desc:'0.5 HP to 5 HP, ISI marked single phase induction motors.'},
+  {id:2,icon:'🔧',name:'Three Phase Motor',price:'₹6,000',category:'Motors',badge:'',desc:'1 HP to 20 HP three phase motors for industrial use.'},
+  {id:3,icon:'💡',name:'MCB Breaker',price:'₹120',category:'Switchgear',badge:'',desc:'16A to 63A MCBs, ISI approved, all major brands.'},
+  {id:4,icon:'🔌',name:'Motor Capacitor',price:'₹180',category:'Parts',badge:'',desc:'2.5µF to 60µF run and start capacitors for motors.'},
+  {id:5,icon:'🛢️',name:'Submersible Pump',price:'₹4,500',category:'Pumps',badge:'New',desc:'0.5 HP to 3 HP submersible pumps for borewell and open well.'},
+  {id:6,icon:'⚡',name:'Copper Winding Wire',price:'₹450/kg',category:'Parts',badge:'',desc:'Pure copper enameled wire, 18 SWG to 30 SWG.'},
+  {id:7,icon:'🔋',name:'Voltage Stabilizer',price:'₹1,800',category:'Electronics',badge:'',desc:'1 KVA to 5 KVA servo / static automatic voltage stabilizers.'},
+  {id:8,icon:'🏭',name:'DOL Starter',price:'₹650',category:'Switchgear',badge:'',desc:'Direct-on-line starters for 3-phase motors, 5A to 32A.'},
+];
+const WHY = [
+  {icon:'fa-certificate',t:'Certified Technicians',p:'Trained & experienced in all types of motor and electrical repair work.'},
+  {icon:'fa-shipping-fast',t:'24-48hr Turnaround',p:'Most motor repairs done within a day so your operations stay running.'},
+  {icon:'fa-shield-alt',t:'Service Warranty',p:'All repairs come with warranty so you have full peace of mind.'},
+  {icon:'fa-rupee-sign',t:'Transparent Pricing',p:'Clear quotes, no hidden charges. You approve before we start.'},
+  {icon:'fa-home',t:'Home Visits',p:'On-site service for large industrial equipment and urgent calls.'},
+  {icon:'fa-star',t:'Trusted Since Years',p:'2000+ satisfied customers across Palitana and Bhavnagar district.'},
+];
+
+let svcs = JSON.parse(localStorage.getItem('ae2_svc')||JSON.stringify(DEFAULT_SVC));
+let prods = JSON.parse(localStorage.getItem('ae2_prod')||JSON.stringify(DEFAULT_PROD));
+let enqs = JSON.parse(localStorage.getItem('ae2_enq')||'[]');
+
+function renderSvc() {
+  document.getElementById('svcGrid').innerHTML = svcs.map((s,i)=>`
+    <div class="svc-card">
+      <div class="svc-num">0${i+1}</div>
+      <div class="svc-icon-wrap"><i class="fas ${s.icon}"></i></div>
+      <h3>${s.name}</h3><p>${s.desc}</p>
+      <div class="svc-price"><i class="fas fa-tag"></i>${s.price}</div>
+    </div>`).join('');
+}
+function renderProd() {
+  document.getElementById('prodGrid').innerHTML = prods.map(p=>`
+    <div class="prod-card">
+      <div class="prod-thumb">${p.icon}${p.badge?`<div class="prod-badge">${p.badge}</div>`:''}</div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.category}</div>
+        <h4>${p.name}</h4><p>${p.desc}</p>
+        <div class="prod-foot">
+          <div class="prod-price">${p.price}</div>
+          <button class="btn-enq" onclick="enquireProd('${p.name}')">Enquire</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function renderWhy() {
+  document.getElementById('whyGrid').innerHTML = WHY.map(w=>`
+    <div class="why-card"><i class="fas ${w.icon}"></i><h4>${w.t}</h4><p>${w.p}</p></div>`).join('');
+}
+function enquireProd(n) {
+  document.getElementById('fS').value='Product Enquiry';
+  document.getElementById('fM').value='I am interested in: '+n;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+function submitForm() {
+  const n=document.getElementById('fN').value.trim();
+  const p=document.getElementById('fP').value.trim();
+  if(!n||!p){alert('Please enter name and phone number.');return;}
+  enqs.unshift({id:Date.now(),name:n,phone:p,service:document.getElementById('fS').value||'General',message:document.getElementById('fM').value,date:new Date().toLocaleDateString('en-IN'),status:'New'});
+  localStorage.setItem('ae2_enq',JSON.stringify(enqs));
+  document.getElementById('formOk').classList.add('show');
+  document.getElementById('fN').value=''; document.getElementById('fP').value=''; document.getElementById('fS').value=''; document.getElementById('fM').value='';
+  setTimeout(()=>document.getElement
